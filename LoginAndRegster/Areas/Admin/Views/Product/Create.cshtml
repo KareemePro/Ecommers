@@ -1,0 +1,98 @@
+﻿@model CreateProductViewModel
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<div class="card" bis_skin_checked="1">
+    <div class="card-header" bis_skin_checked="1">
+        Add new employee
+    </div>
+
+    <div class="card-body card-block " bis_skin_checked="1">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            
+            <div class="row">
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-3">
+                            <label asp-for="Name" class="form-label"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Name" class="form-control " />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <label asp-for="Price" class="form-label"></label>
+                        </div>
+                        <div class="col-8">
+
+                            <input asp-for="Price" class="form-control" value="" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <label asp-for="ProductColor" class="form-label"></label>
+                        </div>
+                        <div class="col-8">
+
+                            <input asp-for="ProductColor" class="form-control" />
+                            <span asp-validation-for="ProductColor" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <label asp-for="CategoryId" class="form-label" ></label>
+                        </div>
+                        <div class="col-8">
+
+                            <select asp-for="CategoryId" class="form-control" asp-items="Model.Category">
+                                <option value=""hidden>Select product type</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <label asp-for="Description" class="form-label"></label>
+                        </div>
+                        <div class="col-8">
+
+                            <textarea asp-for="Description" class="form-control" placeholder="Enter Description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+               
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <label asp-for="Image" class="form-label"></label>
+                        </div>
+                        <div class="col-8">
+
+                            <input asp-for="Image" class="form-control"  />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div> 
+                    <div class="mt-5">
+                        <input type="submit" class="btn btn-primary" value="Save" />
+                        <a asp-action="Index" class="btn btn-success">Back</a>
+                    </div>
+                </div>
+                <div class="col-7 d-flex justify-content-center overflow-hidden">
+                    <img class="image-preview d-none" alt="image" />
+                </div>
+
+                </div>
+     
+        </form>
+    </div>
+
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/admin/js/product-form.js" asp-append-version="true"></script>
+    
+
+}

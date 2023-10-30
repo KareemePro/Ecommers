@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "List Product";
+}
+
+<div class="row mt-2">
+    <div class="col-6">
+        <h3 class="text-dark">List product</h3>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <a asp-action="Create" class="btn btn-dark btn-lg text-white">Add New Product</a>
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-primary mt-3" role="alert" bis_skin_checked="1">
+        This is a primary alert—check it out!
+    </div>
+}
+else
+{
+    <form method="post">
+        <div class="row mb-3">
+            <div class="col-3">
+                <input  name="lowAmount" class="form-control" placeholder="Enter low Amount" />
+            </div>
+            <div class="col-3">
+                <input  name="largAmount" class="form-control" placeholder="Enter larg Amount"/>
+            </div>
+            <div class="col-3">
+                <input type="submit" value="Search" class="btn btn-success"/>
+            </div>
+        </div>
+    </form>
+    <table class="table table-borderless table-data3">
+        <thead class="">
+            <tr >
+               
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Color</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    @*< td>
+                        <img src="@($"{FileSetting.ImgaPaht}/{item.Image}")" alt="@item.Name" style="max-width: 45px" />
+                    </td>  *@
+                    <td>@item.Name</td>
+                    <td>@item.Category.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.ProductColor</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Detals</a>
+                        <a class="btn btn-danger text-white js-delete" data-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+       
+       
+    </table>
+}
+@section Scripts{
+    <script src="~/admin/js/deleteproduct.js" asp-append-version="true"></script>
+   <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+   </script>
+}
+

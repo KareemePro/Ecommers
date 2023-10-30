@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="d-flex justify-content-center flex-wrap mt-5 ">
+    @foreach (var product in Model)
+    {
+        <div class="card my-2 mx-2 colorcard" style="width: 18rem;">
+            <img src="@($"{FileSetting.ImgaPaht}/{product.Image}")" class="card-img-top" style="max-height:330px" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@product.Name</h5>
+                <p class="card-text">
+                    Category:@product.CategoryName
+                </p>
+                <p>Color: @product.ProductColor</p>
+                <p>Price: @product.Price</p>
+                <button type="button" class="btn btn-primary">Add to cart</button>
+            </div>
+        </div>
+
+    }
+
+</div>

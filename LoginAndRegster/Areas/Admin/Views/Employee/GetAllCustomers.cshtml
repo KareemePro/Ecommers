@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Customr>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-primary mt-3" role="alert" bis_skin_checked="1">
+        This is a primary alert—check it out!
+    </div>
+}
+else
+{
+    
+        <table class="table table-borderless table-data3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date of hiring</th>
+                    <th>Aciton</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.FirstName <span>@customer.LastName</span></td>
+                        <td>@customer.Email</td>
+                        <td>@customer.CreateDate</td>
+                        <td>
+                            <a class="btn btn-danger text-white js-delete" data-id="@customer.UserId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+}
+
+@section Scripts{
+    <script src="~/admin/js/deleteuser.js" asp-append-version="true"></script>
+}
+

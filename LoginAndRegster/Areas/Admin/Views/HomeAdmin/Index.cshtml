@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Contact>
+
+<div class="my-3">
+    <h3>List Message</h3>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-primary mt-3" role="alert" bis_skin_checked="1">
+        This is a primary alert—check it out!
+    </div>
+}
+else
+{
+    <div class="w-100 mt-5">
+        <table class="table table-borderless table-data3 mx-auto">
+            <tbody>
+                @foreach(var contact in Model)
+                {
+                    <tr>
+                        <td>@contact.Name</td>
+                        <td>@contact.Email</td>
+                        <td>@contact.PhoneNumber</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@contact.Id" class="btn btn-dark">Details</a>
+                            <a  class="btn btn-danger text-white js-delete" data-id="@contact.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+}
+@section Scripts{
+    <script src="~/admin/js/deletemessage.js"></script>
+}

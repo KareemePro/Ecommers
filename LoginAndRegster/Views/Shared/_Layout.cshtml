@@ -1,0 +1,99 @@
+﻿@using LoginAndRegster.Servisec.Categorys;
+@using LoginAndRegster.Servisec.Products;
+@inject ICategoryServices _categoryS
+@{
+    IEnumerable<Category> category = await _categoryS.GetAll();  
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LoginAndRegster</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid" bis_skin_checked="1">
+            <a class="navbar-brand" href="#">EBookStore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01" bis_skin_checked="1">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-area="Customer" asp-controller="Home" asp-action="Index" >
+                            Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Customer" asp-controller="Contact" asp-action="Create">Contact</a>
+                    </li>
+                   
+                   
+                </ul>
+                <div class="mx-5">
+                    <partial name="_LoginStatusPartial" />
+                </div>
+                
+                
+            </div>
+
+        </div>
+    </nav>
+    <div class="w-100 mt-1 sidbar">
+
+        <form method="get" class="d-flex justify-content-center">
+            <div class="col-sm-2 my-2">
+                <label class="visually-hidden" for="specificSizeSelect">Category</label>
+                <select class="form-select" name="categoryId">
+                    <option selected>Choose...</option>
+                    @foreach (var g in category)
+                    {
+                        <option  value="@g.Id">@g.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-2 mx-3 my-2">
+                <label class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
+                <div class="input-group">
+                    <div class="input-group-text"></div>
+                    <input type="text" class="form-control" value="" name="pName" placeholder="Search by name" />
+                </div>
+            </div>
+
+            <div class="col-auto my-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a asp-action="Index" class="btn btn-dark">Reset</a>
+            </div>
+        </form>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="text-center my-2 alert alert-dismissible alert-success" bis_skin_checked="1">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Well done!</strong> @TempData["Success"]
+        </div>
+    }
+    
+   
+        <div class="main">
+            @RenderBody()
+        </div>
+           
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    
+        @await RenderSectionAsync("Scripts", required: false)
+
+
+    
+</body>
+</html>

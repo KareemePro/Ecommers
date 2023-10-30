@@ -1,0 +1,15 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using LoginAndRegster.Data;
+global using System.ComponentModel.DataAnnotations;
+global using LoginAndRegster.ViewModel;
+global using Microsoft.AspNetCore.Mvc;
+global using LoginAndRegster.Models;
+global using Microsoft.AspNetCore.Authentication;
+global using System.Security.Claims;
+global using System.Security.Cryptography;
+global using System.Text;
+global using Microsoft.AspNetCore.Authorization;
+global using System.Diagnostics;
+global using Microsoft.AspNetCore.Mvc.Rendering;  
+global using LoginAndRegster.Servisec;
+global using LoginAndRegster.Setting;
